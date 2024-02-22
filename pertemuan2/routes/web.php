@@ -69,11 +69,11 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/about', [AboutController::class, 'about']);
 Route::get('/articles/{id}', [ArticleController::class, 'articles']);
 Route::resource('photos', PhotoController::class)->only(['index', 'show']);
-// Route::get('/greeting', function () {
-//     return view(
-//         'hello',
-//         ['name' => 'Muhammad Iqbal Makmur Al-Muniri']
-//     );
-// });
+Route::get('/greeting2', function () {
+    return view(
+        'hello',
+        ['name' => 'Muhammad Iqbal Makmur Al-Muniri']
+    );
+});
 
 Route::get('/greeting', [WelcomeController::class,  'greeting']);
