@@ -1,0 +1,12 @@
+.custom-btn-warning {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: green;
+    color: yellow;
+}
+
+.custom-btn-warning:hover {
+    opacity: 0.8;
+}
