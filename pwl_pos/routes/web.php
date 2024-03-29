@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\POSController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LevelController;
@@ -22,6 +23,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/d', function () {
+    return view('welcome2');
+});
+
+Route::get('/p', function () {
+    return view('general');
+});
+
+Route::get('/user/create', function () {
+    return view('user.create');
+});
+
+Route::get('/level/create', function () {
+    return view('level.create');
+});
+
 Route::get('/level', [LevelController::class, 'index']);
 Route::get('/kategori', [KategoriController::class, 'index']);
 Route::get('/user', [UserController::class, 'index']);
@@ -38,3 +55,4 @@ Route::post('/kategori', [KategoriController::class, 'store']);
 Route::get('/kategori/edit/{id}', [KategoriController::class, 'edit']);
 Route::put('/kategori/edit_simpan/{id}', [KategoriController::class, 'edit_simpan']);
 Route::delete('/kategori/delete/{id}', [KategoriController::class, 'destroy']);
+Route::resource('m_user', POSController::class);
