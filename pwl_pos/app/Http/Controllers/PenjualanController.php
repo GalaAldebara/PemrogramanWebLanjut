@@ -48,21 +48,25 @@ class PenjualanController extends Controller
 
     public function show(string $id)
     {
-        // $detail = DetailPenjualanModel::with(['penjualan', 'barang'])->where('penjualan_id', $id)->get();
-        $detail = PenjualanModel::where('penjualan_id', $id)->first();
+        $penjualan = PenjualanModel::with(['detail', 'user'])->find($id);
 
-        $breadcrumb = (object) [
-            'title' => 'Detail Penjualan',
-            'list' => ['Home', 'Penjualan', 'Detail']
+        $breadcrumb = (object)[
+            'title' => 'Detail Transaksi Penjualan ',
+            'list' => ['Home', 'Transaksi Penjualan ', 'Detail']
         ];
 
         $page = (object) [
-            'title' => 'Detail penjualan'
+            'title' => 'Detail Transaksi Penjualan '
         ];
 
         $activeMenu = 'penjualan';
 
-        return view('penjualan.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'detail' => $detail, 'activeMenu' => $activeMenu]);
+        return view('penjualan.show', [
+            'breadcrumb' => $breadcrumb,
+            'page' => $page,
+            'penjualan' => $penjualan,
+            'activeMenu' => $activeMenu
+        ]);
     }
 
     public function create()

@@ -13,7 +13,7 @@
             <div class="alert alert-success">{{session('success')}}</div>
         @endif
         @if (session('error'))
-            <div class="alert alert-danger">{{session('error')}}</div>   
+            <div class="alert alert-danger">{{session('error')}}</div>
         @endif
         <div class="row">
             <div class="col-md-12">
@@ -109,4 +109,3 @@
     });
 </script>
 @endpush
-   

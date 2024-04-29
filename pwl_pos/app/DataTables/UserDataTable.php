@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\KategoriModel;
+use App\Models\UserModel;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class KategoriDataTable extends DataTable
+class UserDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -22,28 +22,18 @@ class KategoriDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', function ($row) {
-                return '<a href="/kategori/edit/' . $row->kategori_id . '" style="background-color: #6cf542; color: white;" class="btn">Edit</a>
-            <a href="../kategori/delete/' . $row->kategori_id . '" class="btn btn-danger">Delete</a>';
-            })
             ->setRowId('id');
     }
 
-    /**
-     * Get the query source of dataTable.
-     */
-    public function query(KategoriModel $model): QueryBuilder
+    public function query(UserModel $model): QueryBuilder
     {
         return $model->newQuery();
     }
 
-    /**
-     * Optional method if you want to use the html builder.
-     */
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('kategori-table')
+            ->setTableId('user-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
@@ -59,31 +49,20 @@ class KategoriDataTable extends DataTable
             ]);
     }
 
-    /**
-     * Get the dataTable columns definition.
-     */
     public function getColumns(): array
     {
         return [
-            /*         Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'), */
-            Column::make('kategori_id'),
-            Column::make('kategori_kode'),
-            Column::make('kategori_nama'),
+            Column::make('user_id'),
+            Column::make('level_id'),
+            Column::make('username'),
+            Column::make('nama'),
             Column::make('created_at'),
             Column::make('updated_at'),
-            Column::computed('action')
         ];
     }
 
-    /**
-     * Get the filename for export.
-     */
     protected function filename(): string
     {
-        return 'Kategori_' . date('YmdHis');
+        return 'User_' . date('YmdHis');
     }
 }
