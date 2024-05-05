@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\POSController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\Api\LoginController;
 
 /*
 |--------------------------------------------------------------------------
