@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use App\Models\UserModel;
-use App\Models\DetailPenjualanModel;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class PenjualanModel extends Model
 {
@@ -20,13 +18,15 @@ class PenjualanModel extends Model
         'penjualan_id'
     ];
 
+    protected function image(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($image) => url('/storage/posts/' . $image),
+        );
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(UserModel::class, 'user_id', 'user_id');
-    }
-
-    public function detail(): HasMany
-    {
-        return $this->hasMany(DetailPenjualanModel::class, 'penjualan_id', 'penjualan_id');
     }
 }

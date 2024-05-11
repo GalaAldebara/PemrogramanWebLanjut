@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\UserModel;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -27,16 +28,15 @@ class UserController extends Controller
     public function update(Request $request, UserModel $user)
     {
         $user->update($request->all());
-        return UserModel::find($user);
+        return response()->json($user, 200);
     }
 
     public function destroy(UserModel $user)
     {
         $user->delete();
-
         return response()->json([
             'success' => true,
-            'message' => 'Data terhapus'
+            'message' => 'Data Terhapus'
         ]);
     }
 }

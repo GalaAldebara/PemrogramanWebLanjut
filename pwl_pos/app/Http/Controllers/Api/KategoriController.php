@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\KategoriModel;
+use Illuminate\Http\Request;
 
 class KategoriController extends Controller
 {
@@ -21,22 +21,21 @@ class KategoriController extends Controller
 
     public function show(KategoriModel $kategori)
     {
-        return KategoriModel::find($kategori);
+        return $kategori;
     }
 
     public function update(Request $request, KategoriModel $kategori)
     {
         $kategori->update($request->all());
-        return KategoriModel::find($kategori);
+        return response()->json($kategori, 200);
     }
 
     public function destroy(KategoriModel $kategori)
     {
         $kategori->delete();
-
         return response()->json([
             'success' => true,
-            'message' => 'Data terhapus'
+            'message' => 'Data Terhapus'
         ]);
     }
 }
